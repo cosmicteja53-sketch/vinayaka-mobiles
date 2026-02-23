@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import TrustBar from '@/components/TrustBar';
 import Products from '@/components/Products';
 import Lifestyle from '@/components/Lifestyle';
 import Services from '@/components/Services';
@@ -13,6 +14,7 @@ export default function Home() {
             <ScrollProgress />
             <Navbar />
             <Hero />
+            <TrustBar />
             <Products />
             <Lifestyle />
             <Services />
