@@ -10,32 +10,34 @@ cloudinary.config({
 });
 
 const imagesDir = path.join(__dirname, '../public/images');
-const folderName = 'vinayaka-mobiles';
+const mobileHeroItems = [
+    { file: 'oppobrands-mobile.png', name: 'oppobrands-mobile' },
+    { file: 'samsungbrand-mobile.png', name: 'samsungbrand-mobile' },
+    { file: 'vivobrand-mobile.png', name: 'vivobrand-mobile' },
+    { file: 'h1.jpeg', name: 'h1-mobile' } // h1.jpeg used as fallback for h1-mobile.png
+];
 
-async function uploadImages() {
+const mobileFolderName = 'vinayaka-mobiles/hero/mobile';
+
+async function migrateMobileHero() {
+    console.log('🚀 Starting Mobile Hero images migration...');
     try {
-        const files = fs.readdirSync(imagesDir);
-        console.log(`Found ${files.length} files in ${imagesDir}`);
-
-        for (const file of files) {
-            const filePath = path.join(imagesDir, file);
-            const stat = fs.statSync(filePath);
-
-            if (stat.isFile()) {
-                console.log(`Uploading ${file}...`);
-                const result = await cloudinary.uploader.upload(filePath, {
-                    folder: folderName,
-                    public_id: path.parse(file).name, // use filename without extension
-                    overwrite: true,
-                    resource_type: 'auto'
-                });
-                console.log(`✅ Uploaded ${file} -> ${result.secure_url}`);
-            }
+        for (const item of mobileHeroItems) {
+            const filePath = path.join(imagesDir, item.file);
+            console.log(`Uploading ${item.file}...`);
+            const result = await cloudinary.uploader.upload(filePath, {
+                folder: mobileFolderName,
+                public_id: item.name,
+                overwrite: true,
+                resource_type: 'auto'
+            });
+            console.log(`✅ Uploaded ${item.file} -> ${result.secure_url}`);
         }
-        console.log('✨ All images uploaded successfully!');
+        console.log('✨ Mobile Hero images migration complete!');
     } catch (error) {
-        console.error('❌ Error uploading images:', error);
+        console.error('❌ Error uploading mobile hero images:', error);
     }
 }
 
-uploadImages();
+migrateMobileHero();
+// uploadServicesImages(); // Commented out to avoid re-uploading services

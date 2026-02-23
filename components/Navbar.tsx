@@ -18,25 +18,25 @@ export default function Navbar() {
         <>
             <nav
                 className={`fixed top-6 left-6 right-6 z-50 transition-all duration-500 will-animate rounded-full ${scrolled
-                        ? 'bg-black/70 backdrop-blur-lg border border-white/10 shadow-2xl'
-                        : 'bg-transparent'
+                    ? 'bg-black/70 backdrop-blur-lg border border-white/10 shadow-2xl'
+                    : 'bg-transparent'
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-8 md:px-12 h-16 md:h-20 flex items-center justify-between">
                     {/* Logo */}
-                    <a href="#" className="flex flex-col leading-none group text-white cursor-pointer transition-transform hover:scale-105 active:scale-95">
+                    <a href="#" className="flex flex-col leading-none group text-white cursor-pointer transition-transform hover:scale-105 active:scale-95 no-underline">
                         <div className="flex items-center gap-2">
                             <span
-                                className="font-playfair text-xl md:text-2xl font-bold tracking-tight"
+                                className="font-playfair text-xl md:text-2xl font-bold tracking-tight border-none"
                                 style={{ fontFamily: "'Playfair Display', serif" }}
                             >
                                 VM
                             </span>
-                            <span className="text-[10px] md:text-xs font-light tracking-[0.2em] uppercase opacity-80">
+                            <span className="text-[10px] md:text-xs font-light tracking-[0.2em] uppercase opacity-80 border-none">
                                 Vinayaka Mobiles
                             </span>
                         </div>
-                        <span className="text-white text-[9px] font-medium tracking-wider opacity-60 mt-0.5 ml-0.5" style={{ fontStyle: 'italic' }}>
+                        <span className="text-white text-[9px] font-medium tracking-wider opacity-60 mt-0.5 ml-0.5 border-none" style={{ fontStyle: 'italic' }}>
                             వినాయక మొబైల్స్
                         </span>
                     </a>
@@ -98,7 +98,7 @@ export default function Navbar() {
                                     <motion.a
                                         key={link}
                                         href={`#${link.toLowerCase()}`}
-                                        className="text-white text-4xl tracking-tight font-playfair font-black"
+                                        className="text-white text-4xl tracking-tight font-playfair font-black py-4 min-h-[44px] flex items-center"
                                         initial={{ opacity: 0, x: 50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: i * 0.08 + 0.2 }}

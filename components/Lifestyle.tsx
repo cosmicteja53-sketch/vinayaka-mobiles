@@ -214,75 +214,76 @@ export default function Lifestyle() {
                         </h3>
 
                         {/* Editorial Collage Area */}
-                        <div className="relative w-full max-w-[900px] mx-auto flex flex-col md:flex-row items-center justify-center gap-0 md:gap-8">
+                        <div className="relative w-full max-w-[680px] mx-auto h-[280px] md:h-[400px] mb-12">
 
-                            {/* Left Text */}
+                            {/* Image 1: Love (Top Left) */}
+                            <motion.div
+                                className="absolute top-0 left-0 w-[62%] md:w-[58%] aspect-[4/5] z-[2]"
+                                initial={{ opacity: 0, x: -40 }}
+                                animate={frameInView ? { opacity: 1, x: 0 } : {}}
+                                transition={{ duration: 0.7, delay: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
+                                style={{
+                                    filter: "drop-shadow(0 12px 40px rgba(0,0,0,0.12))",
+                                }}
+                            >
+                                <div className="relative w-full h-full overflow-hidden">
+                                    <Image
+                                        src="https://res.cloudinary.com/dzuua38cd/image/upload/f_auto,q_auto/vinayaka-mobiles/lifestyle/love"
+                                        alt="Memories Love"
+                                        fill
+                                        className="object-contain"
+                                        style={{ transform: 'rotate(-2deg)' }}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            </motion.div>
+
+                            {/* Decorative Accent Removed */}
+
+                            {/* Image 2: Love2 (Bottom Right) */}
+                            <motion.div
+                                className="absolute bottom-0 right-0 w-[55%] md:w-[52%] aspect-[4/5] z-[1]"
+                                initial={{ opacity: 0, x: 40 }}
+                                animate={frameInView ? { opacity: 1, x: 0 } : {}}
+                                transition={{ duration: 0.7, delay: 0.4, ease: [0.215, 0.61, 0.355, 1] }}
+                                style={{
+                                    filter: "drop-shadow(0 12px 40px rgba(0,0,0,0.08))",
+                                }}
+                            >
+                                <div className="relative w-full h-full overflow-hidden">
+                                    <Image
+                                        src="https://res.cloudinary.com/dzuua38cd/image/upload/f_auto,q_auto/vinayaka-mobiles/lifestyle/love2"
+                                        alt="Memories Love 2"
+                                        fill
+                                        className="object-contain"
+                                        style={{ transform: 'rotate(1.5deg)' }}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            </motion.div>
+
+                        </div>
+
+                        {/* Text Group */}
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0 w-full max-w-[680px] mx-auto px-4 mt-8">
                             <motion.p
-                                className="hidden md:block text-[#666666] text-[13px] font-medium uppercase tracking-[0.14em] max-w-[150px] leading-relaxed opacity-70 absolute left-0 bottom-0 text-left"
+                                className="text-[#666666] text-[12px] md:text-[13px] font-medium uppercase tracking-[0.14em] max-w-full md:max-w-[150px] leading-relaxed opacity-70 text-center md:text-left"
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={frameInView ? { opacity: 1, x: 0 } : {}}
                                 transition={{ duration: 0.8, delay: 0.5 }}
                             >
                                 Love frames, family portraits, wedding memories.
                             </motion.p>
-
-                            {/* Image 1: Love */}
-                            <motion.div
-                                className="relative w-full md:w-[52%] aspect-[4/5] z-10"
-                                initial={{ opacity: 0, scale: 0.9, rotate: -8 }}
-                                animate={frameInView ? { opacity: 1, scale: 1, rotate: -2 } : {}}
-                                transition={{ duration: 1, ease: 'backOut' }}
-                                style={{
-                                    filter: "drop-shadow(0 12px 40px rgba(0,0,0,0.10))",
-                                    mixBlendMode: 'multiply'
-                                }}
-                            >
-                                <Image
-                                    src="https://res.cloudinary.com/dzuua38cd/image/upload/vinayaka-mobiles/love.png"
-                                    alt="Memories Love"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </motion.div>
-
-                            {/* Image 2: Love2 */}
-                            <motion.div
-                                className="relative w-full md:w-[44%] aspect-[4/5] z-20 md:-ml-[12%] mt-4 md:mt-[40px]"
-                                initial={{ opacity: 0, scale: 0.9, rotate: 8 }}
-                                animate={frameInView ? { opacity: 1, scale: 1, rotate: 1.5 } : {}}
-                                transition={{ duration: 1, delay: 0.2, ease: 'backOut' }}
-                                style={{
-                                    filter: "drop-shadow(0 12px 40px rgba(0,0,0,0.10))",
-                                    mixBlendMode: 'multiply'
-                                }}
-                            >
-                                <Image
-                                    src="https://res.cloudinary.com/dzuua38cd/image/upload/vinayaka-mobiles/love2.png"
-                                    alt="Memories Love 2"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </motion.div>
-
-                            {/* Right Text */}
                             <motion.p
-                                className="hidden md:block text-[#666666] text-[13px] font-medium uppercase tracking-[0.14em] max-w-[150px] leading-relaxed opacity-70 absolute right-0 bottom-0 text-right"
+                                className="text-[#666666] text-[12px] md:text-[13px] font-medium uppercase tracking-[0.14em] max-w-full md:max-w-[150px] leading-relaxed opacity-70 text-center md:text-right"
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={frameInView ? { opacity: 1, x: 0 } : {}}
                                 transition={{ duration: 0.8, delay: 0.5 }}
                             >
-                                Perfect for gifting, home décor, and more.
+                                Perfect for gifting, home décor, and much more.
                             </motion.p>
-
-                            {/* Mobile Mobile Text Stacking */}
-                            <div className="flex flex-col gap-4 mt-8 md:hidden">
-                                <p className="text-[#666666] text-[12px] font-medium uppercase tracking-[0.12em] opacity-70">
-                                    Love frames, family portraits, wedding memories.
-                                </p>
-                                <p className="text-[#666666] text-[12px] font-medium uppercase tracking-[0.12em] opacity-70">
-                                    Perfect for gifting, home décor, and more.
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>

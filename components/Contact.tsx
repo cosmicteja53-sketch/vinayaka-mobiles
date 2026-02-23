@@ -12,7 +12,8 @@ export default function Contact() {
                 <motion.p
                     className="text-white/30 text-xs tracking-[0.5em] uppercase mb-10"
                     initial={{ opacity: 0 }}
-                    animate={inView ? { opacity: 1 } : {}}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 1 }}
                 >
                     Contact Us
@@ -30,7 +31,8 @@ export default function Contact() {
                             key={i}
                             className="inline-block mr-[0.2em]"
                             initial={{ opacity: 0, y: 40 }}
-                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: i * 0.1 }}
                         >
                             {word}
@@ -40,7 +42,8 @@ export default function Contact() {
                     <motion.span
                         className="italic font-normal opacity-40 inline-block"
                         initial={{ opacity: 0, y: 40 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.3 }}
                     >
                         Touch.
@@ -52,7 +55,8 @@ export default function Contact() {
                         href="tel:+919949537581"
                         className="w-full md:w-auto px-12 py-6 bg-white text-[#080808] text-[13px] font-black tracking-[0.2em] uppercase hover:bg-white/90 transition-all duration-400 flex items-center justify-center gap-3 cursor-pointer"
                         initial={{ opacity: 0, y: 20 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
                         Call to Connect
@@ -63,7 +67,8 @@ export default function Contact() {
                         rel="noopener noreferrer"
                         className="w-full md:w-auto px-12 py-6 border border-white/20 text-white text-[13px] font-black tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all duration-400 flex items-center justify-center gap-3 cursor-pointer"
                         initial={{ opacity: 0, y: 20 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.5 }}
                     >
                         WhatsApp Message
@@ -74,7 +79,8 @@ export default function Contact() {
                 <motion.div
                     className="relative flex flex-col items-center gap-12 pt-20"
                     initial={{ opacity: 0 }}
-                    animate={inView ? { opacity: 1 } : {}}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.7 }}
                 >
                     {/* Watermark/Background Text */}

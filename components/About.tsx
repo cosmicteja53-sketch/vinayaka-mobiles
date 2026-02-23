@@ -31,7 +31,8 @@ export default function About() {
                                     key={i}
                                     className="inline-block mr-[12px]"
                                     initial={{ opacity: 0, y: 30 }}
-                                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: '-100px' }}
                                     transition={{ duration: 0.8, delay: i * 0.08, ease: [0.215, 0.61, 0.355, 1] }}
                                 >
                                     {word}
@@ -41,7 +42,8 @@ export default function About() {
                         <motion.p
                             className="text-[#666666] text-lg leading-relaxed mt-12 max-w-lg"
                             initial={{ opacity: 0 }}
-                            animate={inView ? { opacity: 1 } : {}}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
                             transition={{ duration: 1, delay: 0.8 }}
                         >
                             For over a decade, we have been the premier destination for technology in Kanipakam. Our commitment to authenticity and excellence remains unchanged.

@@ -58,6 +58,7 @@ export function FooterSection() {
                             className="text-white opacity-50 text-xl italic font-playfair mb-3"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 0.5 }}
+                            viewport={{ once: true }}
                             transition={{ duration: 1 }}
                             style={{ fontFamily: "'Playfair Display', serif" }}
                         >

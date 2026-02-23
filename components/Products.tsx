@@ -30,151 +30,160 @@ const categories = ['All', 'Samsung', 'OPPO', 'Vivo', 'Tecno'];
 
 export default function Products() {
     const [filter, setFilter] = useState('All');
-    const titleRef = useRef(null);
-    const titleInView = useInView(titleRef, { once: true, margin: "-100px" });
+    const headerRef = useRef(null);
+    const headerInView = useInView(headerRef, { once: true, margin: "-50px" });
 
     const filteredPhones = filter === 'All'
         ? phones
         : phones.filter(phone => phone.brand === filter);
 
     return (
-        <section id="products" className="py-20 md:py-32 bg-white px-4 md:px-12 lg:px-16 overflow-hidden">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="mb-12 md:mb-20" ref={titleRef}>
-                    <div className="flex items-center gap-4 mb-6">
-                        <span className="text-[#999] text-[11px] tracking-[0.4em] uppercase font-bold">Our Collection</span>
-                        <div className="relative">
-                            <span className="text-[#080808] text-[10px] font-bold tracking-wider opacity-60 px-2 py-0.5 border border-black/10">15 DEVICES</span>
-                            <div className="absolute -bottom-1 left-0 w-full h-[1px] bg-[#FFD700]" />
-                        </div>
+        <section id="products" className="py-24 md:py-40 bg-white px-6 md:px-20 overflow-hidden font-inter">
+            <div className="max-w-[1440px] mx-auto">
+                {/* ── Section Header ── */}
+                <header ref={headerRef} className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 mb-20 md:mb-32">
+                    <div className="flex flex-col items-start translate-x-[-20px] opacity-0 animate-[fade-in-left_0.6s_ease-out_forwards]">
+                        <motion.h2
+                            initial={{ opacity: 0, x: -40 }}
+                            animate={headerInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.6 }}
+                            className="font-cormorant italic font-[300] text-[#111] leading-[0.95]"
+                            style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)' }}
+                        >
+                            Find Your
+                        </motion.h2>
+                        <motion.h2
+                            initial={{ opacity: 0, x: -40 }}
+                            animate={headerInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="font-cormorant italic font-[500] text-[#111] leading-[0.95]"
+                            style={{ fontSize: 'clamp(3.5rem, 7vw, 6.5rem)' }}
+                        >
+                            Perfect Phone.
+                        </motion.h2>
+                        <motion.div
+                            initial={{ width: 0 }}
+                            animate={headerInView ? { width: 60 } : {}}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="h-[1px] bg-[#111] my-5 md:my-7"
+                        />
+                        <span className="text-[11px] font-bold tracking-[0.15em] text-[#999] uppercase">
+                            Curated selection · Updated regularly
+                        </span>
                     </div>
 
-                    <h2
-                        className="text-[#080808] font-black leading-none mb-10 md:mb-16"
-                        style={{
-                            fontSize: 'clamp(2.5rem, 8vw, 5rem)',
-                            fontFamily: "'Inter', sans-serif",
-                            letterSpacing: '-0.04em'
-                        }}
-                    >
-                        {"Find Your Perfect Phone".split(" ").map((word, i) => (
-                            <motion.span
-                                key={i}
-                                className="inline-block mr-[0.2em]"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={titleInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.215, 0.61, 0.355, 1] }}
-                            >
-                                {word}
-                            </motion.span>
-                        ))}
-                    </h2>
+                    <div className="flex flex-col items-end opacity-20 pointer-events-none">
+                        <span className="font-cormorant text-[5rem] md:text-[8rem] text-[#f0f0f0] leading-none -mb-4 font-[300]">
+                            {phones.length}
+                        </span>
+                        <span className="text-[11px] text-[#999] uppercase tracking-[0.15em] font-medium mr-2">devices</span>
+                    </div>
+                </header>
 
-                    {/* Category Filter Bar */}
-                    <div className="relative -mx-4 md:mx-0">
-                        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none md:hidden" />
-
-                        <div
-                            className="flex items-center gap-3 overflow-x-auto no-scrollbar md:justify-center px-4 md:px-0 scroll-smooth"
-                            style={{ WebkitOverflowScrolling: 'touch' }}
-                        >
-                            {categories.map((cat) => (
+                {/* ── Category Filter Bar ── */}
+                <div className="mb-16 md:mb-24 relative overflow-x-auto no-scrollbar py-4 px-1 -mx-1">
+                    <div className="flex items-center gap-8 md:gap-12 min-w-max pb-2">
+                        {categories.map((cat) => {
+                            const isActive = filter === cat;
+                            return (
                                 <button
                                     key={cat}
                                     onClick={() => setFilter(cat)}
-                                    className={`flex-shrink-0 px-6 py-2 text-[13px] font-bold tracking-[0.1em] uppercase transition-all duration-300 border ${filter === cat
-                                        ? 'bg-black text-white border-black'
-                                        : 'bg-transparent text-black border-[#e5e5e5] hover:border-black'
+                                    className={`relative text-[13px] tracking-[0.12em] uppercase transition-all duration-300 ${isActive ? 'text-[#111] font-bold' : 'text-[#999] hover:text-[#111]'
                                         }`}
-                                    style={{ borderRadius: 0, whiteSpace: 'nowrap' }}
                                 >
                                     {cat}
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeTab"
+                                            className="absolute -bottom-2 left-0 right-0 h-[2px]"
+                                            style={{ background: 'var(--premium-gradient)' }}
+                                            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                                        />
+                                    )}
                                 </button>
-                            ))}
-                        </div>
+                            );
+                        })}
                     </div>
                 </div>
 
-                {/* Grid */}
+                {/* ── Product Grid ── */}
                 <motion.div
                     layout
-                    className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-[#f0f0f0] border border-[#f0f0f0]"
+                    className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8"
                 >
                     <AnimatePresence mode="popLayout">
                         {filteredPhones.map((phone, index) => (
                             <motion.div
-                                layout
                                 key={`${phone.brand}-${phone.model}`}
-                                initial={{ opacity: 0, scale: 0.98 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.98 }}
-                                transition={{
-                                    duration: 0.4,
-                                    delay: (index % 10) * 0.05,
-                                    ease: "easeOut"
+                                layout
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                exit={{ opacity: 0, scale: 0.96 }}
+                                transition={{ duration: 0.5, delay: (index % 5) * 0.05 }}
+                                className="group relative flex flex-col bg-white overflow-hidden rounded-[16px] transition-all duration-[0.4s] ease-[cubic-bezier(0.16,1,0.3,1)] translated-shadow"
+                                style={{
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.04)'
                                 }}
-                                whileHover={{
-                                    y: -6,
-                                    boxShadow: "0 20px 40px rgba(0,0,0,0.10)",
-                                    zIndex: 20
-                                }}
-                                className="group bg-white flex flex-col will-animate relative transition-all duration-300 border border-transparent hover:border-[#f0f0f0]"
                             >
-                                {/* Phone Image Container */}
-                                <div className="h-[220px] md:h-[280px] w-full relative bg-white overflow-hidden p-6 md:p-10">
+                                {/* Bottom Accent Line (Hover Action) */}
+                                <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-400 z-20"
+                                    style={{ background: 'var(--premium-gradient)' }} />
+
+                                {/* Image Area */}
+                                <div className="h-[170px] md:h-[200px] w-full bg-[#fafafa] relative p-6">
                                     <Image
-                                        src={`https://res.cloudinary.com/dzuua38cd/image/upload/vinayaka-mobiles/${phone.image}.jpg`}
+                                        src={`https://res.cloudinary.com/dzuua38cd/image/upload/f_auto,q_auto/vinayaka-mobiles/${phone.image}.jpg`}
                                         alt={`${phone.brand} ${phone.model}`}
                                         fill
-                                        className="object-contain transition-transform duration-700 group-hover:scale-110"
+                                        className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                                         style={{ mixBlendMode: 'multiply' }}
-                                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                                        sizes="(max-width: 768px) 50vw, 20vw"
+                                        loading="lazy"
                                     />
                                 </div>
 
                                 {/* Content Area */}
-                                <div className="flex-1 p-5 md:p-6 flex flex-col justify-between bg-white">
-                                    <div>
-                                        <span className="block text-[11px] text-[#999] font-bold tracking-[0.12em] uppercase mb-1.5">
-                                            {phone.brand}
-                                        </span>
-                                        <h3 className="text-[#080808] text-[14px] md:text-[15px] font-semibold leading-tight mb-2">
-                                            {phone.model}
-                                        </h3>
-                                    </div>
-
-                                    <div className="flex items-end justify-between">
-                                        <p className="text-[#080808] text-[14px] md:text-[16px] font-bold">
-                                            {phone.price}
-                                        </p>
-                                        <span className="text-[10px] text-[#888888] font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity hidden md:block tracking-tighter">
-                                            Visit store →
-                                        </span>
-                                    </div>
+                                <div className="p-5 md:p-6 pb-7">
+                                    <span className="text-[10px] font-bold tracking-[0.15em] text-[#999] uppercase">
+                                        {phone.brand}
+                                    </span>
+                                    <h3 className="text-[14px] font-bold text-[#111] mt-1 mb-3 leading-tight">
+                                        {phone.model}
+                                    </h3>
+                                    <p
+                                        className="text-[18px] font-cormorant italic"
+                                        style={{
+                                            background: 'var(--premium-gradient)',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent'
+                                        }}
+                                    >
+                                        {phone.price}
+                                    </p>
                                 </div>
+
+                                <style jsx>{`
+                                    .translated-shadow:hover {
+                                        transform: translateY(-8px);
+                                        box-shadow: 0 20px 60px rgba(15, 52, 96, 0.12), 0 8px 24px rgba(83, 52, 131, 0.08);
+                                    }
+                                `}</style>
                             </motion.div>
                         ))}
                     </AnimatePresence>
                 </motion.div>
 
-                {/* Note at bottom */}
-                <div className="mt-16 text-center">
-                    <p className="text-[#888888] text-[10px] italic font-medium opacity-50">
-                        "Prices shown are approximate. Visit store for exact pricing and availability."
+                {/* ── Footer Note ── */}
+                <div className="mt-20 md:mt-32">
+                    <div className="w-full h-[1px] bg-[#f0f0f0] mb-12" />
+                    <p className="text-center text-[11px] font-bold tracking-[0.1em] text-[#bbb] uppercase">
+                        Prices vary · Visit store for availability
                     </p>
                 </div>
             </div>
 
-            <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
         </section>
     );
 }
